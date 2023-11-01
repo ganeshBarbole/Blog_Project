@@ -106,7 +106,7 @@ import { Client, Account,ID,Databases,Storage,Query } from "appwrite";
     }
  }
 
- async deletePost(fileId){
+ async deleteFile(fileId){
     try {
         await this.bucket.deleteFile(
             config.appwriteBucketId,
