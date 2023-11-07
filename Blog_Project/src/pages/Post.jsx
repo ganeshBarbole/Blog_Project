@@ -3,6 +3,7 @@ import { Button, Container } from "../Components";
 import databaseService from "../appwrite/DatabaseService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import parse from 'html-react-parser'
 
 export default function Post(){
     const[post,setPost] = useState();

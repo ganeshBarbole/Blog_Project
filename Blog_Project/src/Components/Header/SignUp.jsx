@@ -2,15 +2,15 @@ import React,{useState} from "react";
 import {Link,useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {Button,Input,Logo} from '../index'
+import authservice from '../../appwrite/AuthService'
 import {login as authlogin} from '../../store/authSlice'
-import {authservice} from '../../appwrite/AuthService'
 import {useForm} from 'react-hook-form'
 
 export default function SignUp () {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {register,handleSubmit} = useForm();
-    const [error,setError] = useState();
+    const [error,setError] = useState("");
 
     const create = async(data) => {
         setError(" ")

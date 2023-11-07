@@ -1,10 +1,10 @@
-import Header from "./Header/Header";
+
 import Footer from "./Footer/Footer";
 import Container from './container/Container'
 import Logo from "./logo";
 import Logout from './Header/Logout'
-import Button from './Header'
-import Input from './Header'
+import Button from './Header/Button'
+import Input from './Header/Input'
 import RTE from './RTE'
 import Select from './Select'
 import  SignUp from './Header/SignUp';
@@ -13,7 +13,8 @@ import PostForm from "./PostForm/PostForm";
 import Postcard from './Postcard'
 import AuthLayout from './AuthLayout'
 
-export{Header,
+export{
+      
        Footer,
        Container,
        Logo,

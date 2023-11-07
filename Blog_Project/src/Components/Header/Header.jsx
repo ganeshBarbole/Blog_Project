@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 export default function Header(){
-    const authStatus = useSelector((state) => {state.Auth.status})
+    const authStatus = useSelector((state) => state.auth.status)
     const navigate = useNavigate()
 
     const navItems = [
@@ -45,21 +45,21 @@ export default function Header(){
                     <Logo width="70px"/>
                     </Link>
                 </div>
-                <ul>
-                    {navItems.map((items) => 
-                    (items.active) ? 
-                     <li key = {items.name}>
+                <ul className='flex ml-auto'>
+                    {navItems.map((item) => 
+                    item.active ? ( 
+                     <li key = {item.name}>
                         <button
-                        onClick={navigate(items.slug)}
+                        onClick={() => navigate(item.slug)}
                         className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
                         >
-                         {items.name}
+                         {item.name}
                         </button>
                     </li> 
-                    : null)}
-                    {authStatus && <li>
+                   ) : null)}
+                    {authStatus && (<li>
                         <Logout/>
-                    </li>}
+                    </li>)}
                 </ul>
             </nav>
             </Container>

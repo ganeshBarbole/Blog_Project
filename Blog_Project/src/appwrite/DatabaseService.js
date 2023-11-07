@@ -2,7 +2,7 @@ import config from "../config/config";
 import { Client, Account,ID,Databases,Storage,Query } from "appwrite";
 
 
- class DatabaseService{
+ export class DatabaseService{
  client = new Client();
  databases;
  bucket;
@@ -36,7 +36,7 @@ import { Client, Account,ID,Databases,Storage,Query } from "appwrite";
 
  async updatePost(slug,{title,content,featuredImage,status}){
      try {
-        return await this.databases.updatePost(
+        return await this.databases.updateDocument(
             config.appwriteDatabaseId,
             config.appwriteCollectionId,
             slug,
@@ -79,9 +79,9 @@ import { Client, Account,ID,Databases,Storage,Query } from "appwrite";
     }
  }
 
- async getPosts(queris = [Query.equal("status",[  "active"])]){
+ async getPosts(queris = [Query.equal("status",  "active")]){
     try {
-        return await this.databases.getPosts(
+        return await this.databases.listDocuments(
             config.appwriteDatabaseId,
             config.appwriteCollectionId,
             queris
@@ -114,12 +114,12 @@ import { Client, Account,ID,Databases,Storage,Query } from "appwrite";
         )
         return true;
     } catch (error) {
-        console.log("Appwrite error :: deleteFile :: error",error);
+        console.log("Appwrite serice :: deleteFile :: error",error);
         return false;
     }
  }
 
- getFilePreview(){
+ getFilePreview(fileId){
     return this.bucket.getFilePreview(
         config.appwriteBucketId,
         fileId

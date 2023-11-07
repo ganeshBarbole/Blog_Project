@@ -1,7 +1,7 @@
 import config from "../config/config";
 import { Client, Account,ID } from "appwrite";
 
-class AuthService{
+export class AuthService{
     client = new Client();
     account;
 
@@ -22,13 +22,13 @@ class AuthService{
              return userAccount;
            }
         } catch (error) {
-            console.log("Appwrite error :: creatAccount :: error",error)
+            throw error;
         }
     }
 
     async logIn({email,password}){
         try {
-            return this.account.createEmailSession(email,password);
+            return await this.account.createEmailSession(email,password);
         } catch (error) {
             console.log("Appwrite error :: logIn :: error",error)
         }
@@ -40,11 +40,12 @@ class AuthService{
         } catch (error) {
             console.log("Appwrite error :: getCurrentUser :: error",error)
         }
+        return null;
     }
 
     async logOut(){
         try {
-            return this.account.deleteSessions()
+            return await this.account.deleteSessions()
         } catch (error) {
             console.log("Appwrite error :: logOut :: error",error)
         }

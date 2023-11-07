@@ -3,9 +3,9 @@ import {Button,RTE,Input,Select} from '../index';
 import {useForm} from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {databaseService} from '../../appwrite/DatabaseService'
+import databaseService from '../../appwrite/DatabaseService'
 
-export default function PostForm(post){
+export default function PostForm({post}){
     const navigate = useNavigate();
     const {register,handleSubmit,watch,setValue,getValues,control} = useForm({
         defaultValues:{
@@ -16,11 +16,11 @@ export default function PostForm(post){
             
         }
     })
-    const userdata = useSelector(state => state.user.userdata)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async(data) => {
         if(post) {
-              const file = data.image[0] ? databaseService.createFile(data.image[0]) :null
+              const file = data.image[0] ? await databaseService.createFile(data.image[0]) :null;
             if(file){
                 databaseService.deleteFile(post.feacturedImage)
             }
@@ -40,7 +40,7 @@ export default function PostForm(post){
                 data.feacturedImage = fileId;
                 const dbPost = await databaseService.createPost({
                     ...data,
-                    userId : userdata.$id
+                    userId : userData.$id
                 })
                 if(dbPost){
                     navigate(`/post/${dbPost.$id}`)
