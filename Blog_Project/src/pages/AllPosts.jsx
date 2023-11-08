@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import databaseService from "../appwrite/DatabaseService";
 import { Container,Postcard } from "../Components";
-import { useNavigate } from "react-router-dom";
+
 
 export default function AllPosts(){
-    const[posts,setPosts] = useState()
+    const[posts,setPosts] = useState([])
     
     useEffect(() => {} , [])
     databaseService.getPosts([]).then((posts) => { 

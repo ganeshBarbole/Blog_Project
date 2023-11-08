@@ -13,7 +13,7 @@ return(
         control={control}
         render={({field:onChange}) => {
             <Editor 
-            initialValue="default_value"
+            initialValue={defaultvalue}
             init={
                 {   
                     initialValue:defaultValue,

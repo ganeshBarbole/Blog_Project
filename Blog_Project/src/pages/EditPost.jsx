@@ -8,15 +8,17 @@ export default function EditPost(){
     const navigate = useNavigate()
     const {slug} = useParams()
     useEffect(() => {
+        if(slug){ 
         databaseService.getPost(slug).then((post) => { 
             if(post){
                 setPosts(post)
             }
-            else{
+         }
+     ) }else{
                 navigate("/")
             }
-    })
-    } , [slug,navigate])
+    
+    }, [slug,navigate])
 
     return(
         <div className="w-full py-8">

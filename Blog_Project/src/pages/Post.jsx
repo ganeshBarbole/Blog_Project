@@ -6,12 +6,12 @@ import { useSelector } from "react-redux";
 import parse from 'html-react-parser'
 
 export default function Post(){
-    const[post,setPost] = useState();
+    const[post,setPost] = useState(null);
     const navigate = useNavigate()
     const {slug} = useParams();
 
-    const userData = useSelector((state) => state.auth.userData)
-    const isAuthor = post && userData ? post.$id == userData.$id : false
+    const userData = useSelector((state) => state.auth.userData);
+    const isAuthor = post && userData ? post.userId == userData.$id : false;
 
     useEffect(() => {
         if(slug){
@@ -35,7 +35,7 @@ export default function Post(){
     return post ? (
         <div className="py-8">
             <Container>
-            <div className="w-full flex justify-center relative border rounded-xl p-2">
+            <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
             <img
                     src= {databaseService.getFilePreview(post.featuredImage)}
                     alt={post.title}
@@ -48,19 +48,21 @@ export default function Post(){
                        <Button bg-color = "bg-green-500" className="mr-3">
                         Edit
                        </Button>
+                       </Link>
                        <Button bg-color = "bg-red-500" onclick={deletePost}>
                         Delete
                        </Button>
-                     </Link>
+                     
                     </div>
                   )}
+                  </div>
                   <div className="w-full mb-6">
                    <h1 className="text-2xl font-bold">{post.title}</h1>
                   </div>
                   <div className="browser-css">
                     {parse(post.content)}
                   </div>
-                </div>
+                
             </Container>
 
         </div>
