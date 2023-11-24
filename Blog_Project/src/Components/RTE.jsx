@@ -11,9 +11,9 @@ return(
         <Controller
         name = {name || "content"}
         control={control}
-        render={({field:onChange}) => {
+        render={({field:{onChange}}) => {
             <Editor 
-            initialValue={defaultvalue}
+            initialValue={defaultValue}
             init={
                 {   
                     initialValue:defaultValue,

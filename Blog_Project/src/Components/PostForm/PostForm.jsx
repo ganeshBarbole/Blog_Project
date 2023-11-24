@@ -12,11 +12,11 @@ export default function PostForm({post}){
             title: post?.title || "",
             slug : post?.slug || "",
             content : post?.content || "",
-            status : post?.status || Active
+            status : post?.status || "Active"
             
         }
     })
-    const userData = useSelector(state => state.auth.userData)
+    const userData = useSelector((state) => state.auth.userData)
 
     const submit = async(data) => {
         if(post) {
